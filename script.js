@@ -1,53 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Atualiza o ano no rodapé automaticamente para manter o site atualizado (SEO)
+    console.log("Javascript carregado com sucesso!");
+
+    // 1. Atualiza ano no rodapé
     const yearSpan = document.getElementById('ano-atual');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Configuração do Intersection Observer para as animações reveladoras (Scroll)
-    // Isso melhora a experiência do usuário (UX) e diminui a taxa de rejeição
+    // 2. Intersection Observer (Animação de Scroll)
     const revealElements = document.querySelectorAll('.reveal');
-
-    const revealOptions = {
-        threshold: 0.1, // Elemento aparece quando 10% entra na tela
-        rootMargin: "0px 0px -50px 0px" 
-    };
-
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                return;
-            } else {
-                entry.target.classList.add('active');                
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
             }
         });
     }, revealOptions);
 
-    revealElements.forEach(el => {
-        revealOnScroll.observe(el);
-    });
+    revealElements.forEach(el => revealOnScroll.observe(el));
 
-    // Função para menu com scroll suave (Smooth Scroll)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Considera a altura do menu fixo
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
+    // 3. Lógica do Menu Hamburger Mobile
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const linksMobile = document.querySelectorAll('.nav-links li a');
+
+    // Verifica se os elementos existem na tela
+    if (hamburger && navLinks) {
+        console.log("Menu Hamburger encontrado pelo Javascript!");
+
+        hamburger.addEventListener('click', () => {
+            console.log("Você clicou no menu hamburger!"); // Isso TEM que aparecer no console ao clicar
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-    });
+
+        linksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                console.log("Você clicou em um link, fechando o menu...");
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    } else {
+        console.error("ERRO: O Javascript não achou o .hamburger ou .nav-links no seu HTML.");
+    }
 });
