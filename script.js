@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!entry.isIntersecting) {
                 return;
             } else {
-                entry.target.classList.add('active');
-                // observer.unobserve(entry.target); // Deixa comentado para o efeito repetir ao subir a tela
+                entry.target.classList.add('active');                
             }
         });
     }, revealOptions);

@@ -1,13 +1,13 @@
 /* Variáveis e Configurações Básicas - Paleta Azul Sereno e Dourado */
 :root {
-    --bg-color: #F0F4F8; /* Azul gelo muito claro, tira a frieza do branco puro */
-    --bg-light: #E1E8ED; /* Azul acinzentado suave para alternar as seções */
-    --text-main: #102A43; /* Azul muito escuro para leitura (quase preto) */
-    --text-muted: #486581; /* Azul médio para textos secundários */
-    --primary: #1A365D; /* Azul profundo (baseado no logo da psicologia) */
+    --bg-color: #F0F4F8; 
+    --bg-light: #E1E8ED; 
+    --text-main: #102A43; 
+    --text-muted: #486581; 
+    --primary: #1A365D; 
     --primary-hover: #12284C;
-    --accent: #D4AF37; /* Dourado elegante para chamar atenção sutilmente */
-    --card-bg: #FFFFFF; /* Fundo dos cards */
+    --accent: #D4AF37; 
+    --card-bg: #FFFFFF; 
     
     /* Sombras Modernas */
     --shadow-sm: 0 4px 6px rgba(16, 42, 67, 0.05);
@@ -52,7 +52,8 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
 .badge-tag {
-    display: inline-block; background: rgba(212, 175, 55, 0.15); color: #B38F24;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(212, 175, 55, 0.15); color: #B38F24;
     padding: 6px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;
 }
@@ -85,7 +86,6 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .hero-text h1 { font-size: 3.4rem; line-height: 1.2; margin-bottom: 24px; color: var(--text-main); }
 .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 35px; max-width: 540px; }
 .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-.security-text { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; display: flex; align-items: center; gap: 6px; }
 
 .hero-image-wrapper { flex: 1; position: relative; }
 
@@ -177,12 +177,6 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .icon-btn.instagram:hover { background-color: #e1306c; border-color: #e1306c; }
 .icon-btn.email:hover { background-color: var(--accent); border-color: var(--accent); }
 
-/* Mobile e Responsividade */
-@media (max-width: 900px) {
-    .sobre-grid { grid-template-columns: 1fr; gap: 50px; }
-    .sobre-image { order: -1; max-width: 450px; margin: 0 auto; }
-}
-
 /* Estilo base do Hamburger (Oculto no Desktop) */
 .hamburger {
     display: none;
@@ -190,6 +184,7 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
     gap: 6px;
     cursor: pointer;
     z-index: 1001; 
+}
 
 .hamburger span {
     width: 28px;
@@ -199,13 +194,36 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
     transition: all 0.3s ease-in-out;
 }
 
+/* Mobile e Responsividade */
+@media (max-width: 900px) {
+    .sobre-grid { grid-template-columns: 1fr; gap: 50px; }
+    .sobre-image { order: -1; max-width: 450px; margin: 0 auto; }
+}
+
 @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    
+    .nav-links { 
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: rgba(240, 244, 248, 0.98); backdrop-filter: blur(15px);
+        flex-direction: column; align-items: center; padding: 30px 0; gap: 25px;
+        box-shadow: 0 15px 20px rgba(16, 42, 67, 0.1);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: clip-path 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .nav-links.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
     .hero-container { flex-direction: column; text-align: center; gap: 40px; }
     .hero { padding: 130px 0 60px; }
     .hero-text h1 { font-size: 2.6rem; }
     .hero-actions { justify-content: center; }
-    .security-text { justify-content: center; width: 100%; margin-top: 10px; }
     .section { padding: 70px 0; }
     .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; }
     .whatsapp-float svg { width: 30px; height: 30px; }
