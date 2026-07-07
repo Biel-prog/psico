@@ -1,18 +1,17 @@
-/* Variáveis e Configurações Básicas - Paleta Azul Sereno e Dourado */
+/* Variáveis: Azul Marinho Profundo e Dourado Areia */
 :root {
-    --bg-color: #F0F4F8; 
-    --bg-light: #E1E8ED; 
-    --text-main: #102A43; 
-    --text-muted: #486581; 
+    --bg-color: #F8F9FA; 
+    --bg-light: #F1F3F5; 
+    --text-main: #1C2833; 
+    --text-muted: #566573; 
     --primary: #1A365D; 
-    --primary-hover: #12284C;
-    --accent: #D4AF37; 
+    --primary-hover: #12284C; 
+    --accent: #C5A059; 
     --card-bg: #FFFFFF; 
     
-    /* Sombras Modernas */
-    --shadow-sm: 0 4px 6px rgba(16, 42, 67, 0.05);
-    --shadow-md: 0 10px 20px rgba(16, 42, 67, 0.08);
-    --shadow-lg: 0 15px 30px rgba(16, 42, 67, 0.12);
+    --shadow-sm: 0 4px 6px rgba(26, 54, 93, 0.05);
+    --shadow-md: 0 10px 20px rgba(26, 54, 93, 0.08);
+    --shadow-lg: 0 15px 30px rgba(26, 54, 93, 0.12);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,7 +32,7 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .bg-light { background-color: var(--bg-light); }
 .border-radius-lg { border-radius: 16px; box-shadow: var(--shadow-md); }
 
-/* Botões Customizados */
+/* Botões */
 .btn-primary {
     display: inline-block; background: var(--primary); color: white; padding: 14px 34px;
     border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 1.05rem;
@@ -41,7 +40,7 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 }
 .btn-primary:hover { 
     background: var(--primary-hover); transform: translateY(-3px); color: white;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-lg); border-color: var(--primary-hover);
 }
 
 .btn-outline {
@@ -51,19 +50,21 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 }
 .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
+/* Tags de Destaque */
 .badge-tag {
     display: inline-flex; align-items: center; justify-content: center;
-    background: rgba(212, 175, 55, 0.15); color: #B38F24;
+    background: rgba(197, 160, 89, 0.15); color: #A67D3D;
     padding: 6px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;
 }
+.safe-badge { margin-bottom: 0; background: rgba(37, 211, 102, 0.15); color: #1C9E49; }
 
 /* Navbar */
 .navbar {
     position: fixed; top: 0; width: 100%; padding: 15px 0;
-    background: rgba(240, 244, 248, 0.85); backdrop-filter: blur(12px);
-    z-index: 1000; border-bottom: 1px solid rgba(16, 42, 67, 0.05);
-    transition: all 0.3s ease;
+    background: rgba(248, 249, 250, 0.95); backdrop-filter: blur(15px);
+    z-index: 900; border-bottom: 1px solid rgba(26, 54, 93, 0.05);
+    transition: all 0.3s ease; box-shadow: var(--shadow-sm);
 }
 .nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px;}
 .logo { display: flex; flex-direction: column; }
@@ -76,17 +77,22 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .btn-nav { background: var(--primary); color: #fff !important; padding: 10px 24px; border-radius: 30px; box-shadow: var(--shadow-sm); }
 .btn-nav:hover { background: var(--primary-hover); transform: translateY(-2px); }
 
-/* Hero com Gradiente Suave */
+/* Hero Section com efeito visual */
 .hero { 
     padding: 160px 0 100px; 
-    background: linear-gradient(135deg, var(--bg-color) 0%, #E2EBF3 100%);
+    background: linear-gradient(135deg, rgba(248,249,250,1) 0%, rgba(226,233,240,1) 100%);
+    position: relative; overflow: hidden;
 }
-.hero-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.hero::after {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.03) 0%, transparent 60%);
+    z-index: 0; pointer-events: none;
+}
+.hero-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 .hero-text { flex: 1.2; }
 .hero-text h1 { font-size: 3.4rem; line-height: 1.2; margin-bottom: 24px; color: var(--text-main); }
 .hero-text p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 35px; max-width: 540px; }
 .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-
 .hero-image-wrapper { flex: 1; position: relative; }
 
 /* Seções Padrão */
@@ -95,13 +101,20 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .section-title h2 { font-size: 2.6rem; margin-bottom: 16px; color: var(--primary); }
 .section-title p { color: var(--text-muted); font-size: 1.1rem; }
 
-/* Sobre Mim Grid */
+/* Sobre Mim & Citação Jung */
 .sobre-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 70px; align-items: center; }
 .sobre-text h2 { font-size: 2.4rem; margin-bottom: 5px; color: var(--primary); }
 .subtitle-highlight { color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.1rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
 .sobre-text p { color: var(--text-muted); margin-bottom: 18px; font-size: 1.05rem; }
-.sobre-list { list-style: none; margin: 24px 0 36px 0; }
-.sobre-list li { margin-bottom: 14px; color: var(--text-main); font-weight: 500; display: flex; align-items: center; gap: 10px; font-size: 1.05rem;}
+
+.jung-quote {
+    background: white; border-left: 4px solid var(--accent);
+    padding: 20px 25px; margin: 30px 0; border-radius: 0 10px 10px 0;
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; color: var(--primary);
+    box-shadow: var(--shadow-sm); transition: transform 0.3s ease;
+}
+.jung-quote:hover { transform: translateX(10px); }
+.jung-quote span { display: block; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-style: normal; color: var(--text-muted); margin-top: 10px; font-weight: 500;}
 
 /* Cards de Especialidades */
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
@@ -110,12 +123,24 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
     box-shadow: var(--shadow-sm); border: 1px solid rgba(255, 255, 255, 0.8); 
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
-.feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: rgba(212, 175, 55, 0.2); }
+.feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: rgba(197, 160, 89, 0.3); }
 .feature-card .icon { font-size: 2.8rem; margin-bottom: 24px; display: inline-block; }
 .feature-card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--primary); }
 .feature-card p { color: var(--text-muted); font-size: 1rem; }
 
-/* Blog / Reflexões */
+/* Seção: Como Funciona */
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; text-align: center; }
+.step-card { padding: 30px; }
+.step-number { 
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; 
+    color: var(--accent); opacity: 0.3; margin-bottom: 10px; 
+    transition: all 0.4s ease;
+}
+.step-card:hover .step-number { opacity: 1; transform: scale(1.1); }
+.step-card h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; }
+.step-card p { color: var(--text-muted); }
+
+/* Reflexões (Blog) */
 .blog-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
 .blog-card { 
     background: var(--card-bg); border-radius: 20px; overflow: hidden; 
@@ -129,72 +154,101 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
 .blog-content h3 { font-size: 1.35rem; margin-bottom: 15px; color: var(--primary); }
 .blog-content p { color: var(--text-muted); font-size: 1rem; }
 
-/* Botão Flutuante do WhatsApp */
-.whatsapp-float {
-    position: fixed; width: 65px; height: 65px; bottom: 35px; right: 35px;
-    background-color: #25d366; color: #FFF; border-radius: 50%; text-align: center;
-    box-shadow: 0px 8px 20px rgba(37, 211, 102, 0.3); z-index: 999;
-    display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* NOVA ANIMAÇÃO CONTÍNUA DO WHATSAPP (PULSAR E PISCAR SOZINHO) */
+@keyframes pulse-wpp {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7), 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: scale(1.08); /* Faz o botão crescer fisicamente na tela */
+        box-shadow: 0 0 0 18px rgba(37, 211, 102, 0), 0 8px 20px rgba(37, 211, 102, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
 }
-.whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); box-shadow: 0px 12px 25px rgba(37, 211, 102, 0.4); }
-.whatsapp-float svg { width: 38px; height: 38px; }
+
+.whatsapp-float {
+    position: fixed; 
+    width: 60px; 
+    height: 60px; 
+    bottom: 35px; 
+    left: 35px; 
+    background-color: #25d366; 
+    color: #FFF; 
+    border-radius: 50%; 
+    text-align: center;
+    z-index: 998; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    /* Executa a animação em loop infinito sozinho, sem depender de mouse */
+    animation: pulse-wpp 2s infinite ease-in-out; 
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-float svg { width: 34px; height: 34px; }
+.whatsapp-float:hover { background-color: #20b858; }
 
 /* Footer */
 .footer { background: var(--primary); color: white; padding: 90px 0 40px; text-align: center; }
 .footer-content { max-width: 800px; margin: 0 auto; }
 .footer h2 { font-size: 2.4rem; margin-bottom: 24px; color: white; }
 .footer p { opacity: 0.9; margin-bottom: 30px; font-size: 1.1rem; }
-.copyright { margin-top: 40px; font-size: 0.9rem; opacity: 0.6; line-height: 1.8; }
+.copyright { margin-top: 40px; font-size: 0.9rem; opacity: 0.5; line-height: 1.8; }
 
-/* Efeitos JS */
-.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* Logo da Hero */
-.logo-destaque {
-    display: flex; justify-content: center; align-items: center; width: 100%;
-    animation: floatLogo 6s ease-in-out infinite;
-}
-.logo-destaque img { filter: drop-shadow(0 15px 25px rgba(16, 42, 67, 0.15)); }
-
-@keyframes floatLogo {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px); }
-}
-
-/* Área dos Ícones de Contato no Footer */
 .contact-icons-wrapper { display: flex; justify-content: center; gap: 24px; margin: 45px 0; }
 .icon-btn {
-    width: 65px; height: 65px; background-color: rgba(255,255,255,0.1); border-radius: 50%;
+    width: 60px; height: 60px; background-color: rgba(255,255,255,0.05); border-radius: 50%;
     display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
-    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
 }
-.icon-btn svg { width: 32px; height: 32px; transition: all 0.3s ease; fill: white; }
+.icon-btn svg { width: 28px; height: 28px; transition: all 0.3s ease; fill: white; }
+.icon-btn:hover { transform: translateY(-5px); border-color: var(--accent); background-color: rgba(255,255,255,0.15); }
 
-.icon-btn:hover { transform: translateY(-8px); border-color: white; }
-.icon-btn.whatsapp:hover { background-color: #25d366; border-color: #25d366; }
-.icon-btn.instagram:hover { background-color: #e1306c; border-color: #e1306c; }
-.icon-btn.email:hover { background-color: var(--accent); border-color: var(--accent); }
+/* Animações JS de Entrada */
+.reveal { opacity: 0; transform: translateY(50px); transition: all 0.9s cubic-bezier(0.5, 0, 0, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
-/* Estilo base do Hamburger (Oculto no Desktop) */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 1001; 
+/* --- CSS DO CHATBOT - BOTÃO COR DOURADA (NÃO OFUSCA NO AZUL) --- */
+.chatbot-container { position: fixed; bottom: 35px; right: 35px; z-index: 1000; }
+.chatbot-toggler { 
+    width: 65px; height: 65px; border-radius: 50%; 
+    background-color: var(--accent); /* Cor Dourada para destacar */
+    color: white; border: none; cursor: pointer; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    display: flex; align-items: center; justify-content: center; 
+    transition: all 0.3s ease; 
 }
+.chatbot-toggler svg { width: 32px; height: 32px; }
+.chatbot-toggler:hover { transform: scale(1.1); background-color: #B38F4E; }
+.chatbot-window { position: absolute; bottom: 85px; right: 0; width: 350px; background: white; border-radius: 16px; box-shadow: 0 10px 25px rgba(26, 54, 93, 0.2); overflow: hidden; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.05); }
+.chatbot-window.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.chat-header { background: var(--primary); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+.chat-header-info strong { display: block; font-size: 1.05rem; }
+.chat-header-info span { font-size: 0.8rem; opacity: 0.8; }
+.close-chat { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; line-height: 1; }
+.chat-body { padding: 20px; height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: #F4F6F8; scroll-behavior: smooth; }
+.chat-msg { padding: 12px 16px; border-radius: 16px; font-size: 0.9rem; line-height: 1.4; max-width: 85%; animation: fadeIn 0.3s ease; }
+.bot-msg { background: white; color: var(--text-main); align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border: 1px solid #eee; }
+.user-msg { background: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-options { display: flex; flex-direction: column; gap: 8px; margin-top: 5px; }
+.chat-opt-btn { background: white; border: 1px solid var(--accent); color: var(--text-main); padding: 12px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; cursor: pointer; text-align: left; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+.chat-opt-btn:hover { background: var(--accent); color: white; }
+.chat-opt-action { background: #25d366; border-color: #25d366; color: white; text-align: center; font-weight: bold; margin-top: 5px; text-decoration: none; display: block; }
+.chat-opt-action:hover { background: #20b858; color: white; border-color: #20b858; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chat-body::-webkit-scrollbar { width: 6px; }
+.chat-body::-webkit-scrollbar-track { background: transparent; }
+.chat-body::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
 
-.hamburger span {
-    width: 28px;
-    height: 3px;
-    background-color: var(--primary);
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-}
+/* Menu Hamburger (Mobile) */
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+.hamburger span { width: 28px; height: 3px; background-color: var(--primary); border-radius: 4px; transition: all 0.3s ease-in-out; }
 
-/* Mobile e Responsividade */
+/* Mobile e Responsividade Perfeita */
 @media (max-width: 900px) {
     .sobre-grid { grid-template-columns: 1fr; gap: 50px; }
     .sobre-image { order: -1; max-width: 450px; margin: 0 auto; }
@@ -205,16 +259,14 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
     
     .nav-links { 
         position: absolute; top: 100%; left: 0; width: 100%;
-        background: rgba(240, 244, 248, 0.98); backdrop-filter: blur(15px);
+        background: rgba(248, 249, 250, 0.98); backdrop-filter: blur(15px);
         flex-direction: column; align-items: center; padding: 30px 0; gap: 25px;
-        box-shadow: 0 15px 20px rgba(16, 42, 67, 0.1);
+        box-shadow: 0 15px 20px rgba(26, 54, 93, 0.1);
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
         transition: clip-path 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .nav-links.active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
+    .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
 
     .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -225,6 +277,12 @@ h1, h2, h3, .logo-name { font-family: 'Playfair Display', serif; color: var(--te
     .hero-text h1 { font-size: 2.6rem; }
     .hero-actions { justify-content: center; }
     .section { padding: 70px 0; }
-    .whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+    .sobre-grid { text-align: center; }
+    
+    .chatbot-window { width: 300px; right: -10px; }
+    
+    /* Configurações dos botões flutuantes para a tela de celular */
+    .whatsapp-float { bottom: 20px; left: 20px; width: 55px; height: 55px; }
     .whatsapp-float svg { width: 30px; height: 30px; }
+    .chatbot-container { bottom: 20px; right: 20px; }
 }
