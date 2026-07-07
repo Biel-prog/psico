@@ -478,6 +478,58 @@ h1, h2, h3, .logo-name {
 }
 
 /* =========================================
+   PASSO A PASSO (COMO FUNCIONA)
+   ========================================= */
+.steps-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 40px; 
+    text-align: center; 
+}
+
+.step-card { 
+    padding: 35px 25px; 
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(197, 160, 89, 0.3);
+}
+
+.step-number { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    color: var(--accent); 
+    opacity: 0.25; 
+    margin-bottom: 10px; 
+    transition: all 0.4s ease;
+    line-height: 1;
+}
+
+.step-card:hover .step-number { 
+    opacity: 1; 
+    transform: scale(1.1); 
+}
+
+.step-card h3 { 
+    color: var(--primary); 
+    margin-bottom: 15px; 
+    font-size: 1.4rem; 
+}
+
+.step-card p { 
+    color: var(--text-muted); 
+    font-size: 1rem;
+}
+
+/* =========================================
    RODAPÉ (FOOTER) E ÍCONES COLORIDOS
    ========================================= */
 .footer { 

@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeChat = document.querySelector('.close-chat');
     const chatBody = document.getElementById('chat-body');
 
-    // FIX: Força o navegador do PC a medir a rolagem do ponto certo
+    // FIX: Força o navegador a medir a rolagem do ponto certo
     if(chatBody) {
         chatBody.style.position = 'relative';
     }
@@ -88,12 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
 
-        // Função que reinicia tudo
+        // NOVA FUNÇÃO DE BOAS-VINDAS (COM 2 BALÕES E A FRASE ACOLHEDORA)
         function resetChat() {
-            chatBody.innerHTML = `<div class="chat-msg bot-msg" id="msg-welcome">Olá! Sou o assistente virtual do Psicólogo Rogério Jefferson. Como posso te orientar hoje?</div>`;
+            chatBody.innerHTML = `
+                <div class="chat-msg bot-msg">Olá! Sou o assistente virtual do Psicólogo Rogério Jefferson.</div>
+                <div class="chat-msg bot-msg">Dar o primeiro passo para cuidar da saúde emocional pode parecer difícil, mas você não precisa fazer isso sozinho(a). Estou aqui para ajudar a tornar esse processo mais simples.<br><br><strong>Como posso te orientar hoje?</strong></div>
+            `;
             showOptions();
             
-            // TIMEOUT VITAL: Dá 50 milissegundos para o PC renderizar os botões ANTES de travar a tela no topo
+            // TIMEOUT VITAL: Dá 50 milissegundos para o renderizar os botões ANTES de travar a tela no topo
             setTimeout(() => {
                 chatBody.scrollTop = 0;
             }, 50);
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, 50);
                 
-            }, 3200);
+            }, 3000);
         }
     }
 });
