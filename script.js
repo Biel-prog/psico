@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Animação de Scroll
+    // 2. Animação de Scroll (Intersection Observer)
     const revealElements = document.querySelectorAll('.reveal');
     const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
@@ -42,11 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeChat = document.querySelector('.close-chat');
     const chatBody = document.getElementById('chat-body');
 
-    // Dados estruturados baseados no documento fornecido
+    // Banco de Dados de Dúvidas (Atualizado com a opção de Reembolso/Convênio)
     const faqData = [
         {
+            q: "Atende convênio ou particular?",
+            a: "Os atendimentos são particulares, mas você pode usar o seu plano de saúde através do sistema de reembolso! Funciona assim: você realiza o pagamento da sessão, eu emito um recibo com o meu CRP, e você envia para o seu convênio devolver o valor para você (parcial ou total, dependendo do seu plano)."
+        },
+        {
             q: "Onde ocorrem as sessões?",
-            a: "Realizo atendimentos presenciais no meu consultório em Mogi das Cruzes, e também ofereço a modalidade de Psicoterapia Online para todo o Brasil."
+            a: "Realizo atendimentos presenciais em Mogi das Cruzes e também ofereço a modalidade de Psicoterapia Online."
         },
         {
             q: "Quais questões a terapia ajuda a tratar?",
@@ -58,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             q: "Você atende qual faixa etária?",
-            a: "Meu atendimento psicológico é focado no acolhimento e desenvolvimento emocional de adultos."
+            a: "Meu atendimento psicológico é focado no acolhimento e desenvolvimento emocional de jovens, adultos, casais e idosos."
         }
     ];
 
@@ -67,12 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
         closeChat.addEventListener('click', () => chatbotWindow.classList.remove('show'));
 
         function showOptions() {
+            // Remove opções antigas para não duplicar
             const oldOptions = document.querySelector('.chat-options');
             if (oldOptions) oldOptions.remove();
 
             const optionsContainer = document.createElement('div');
             optionsContainer.className = 'chat-options';
 
+            // Cria os botões de perguntas dinamicamente
             faqData.forEach(item => {
                 const btn = document.createElement('button');
                 btn.className = 'chat-opt-btn';
@@ -81,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 optionsContainer.appendChild(btn);
             });
 
-            // Botão Direto para o WhatsApp
+            // Botão Direto para o WhatsApp destacado em verde
             const zapBtn = document.createElement('a');
             zapBtn.href = "https://wa.me/5511983638648?text=Ol%C3%A1%2C%20estava%20no%20site%20e%20gostaria%20de%20agendar%20minha%20consulta."; 
             zapBtn.target = "_blank";
@@ -90,24 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
             optionsContainer.appendChild(zapBtn);
 
             chatBody.appendChild(optionsContainer);
+            
+            // Rola o chat para baixo automaticamente
             setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 100);
         }
 
         function handleQuestionClick(question, answer) {
+            // Remove as opções temporariamente enquanto o bot "pensa"
             document.querySelector('.chat-options').remove();
             
-            // Renderiza a pergunta
+            // Renderiza a pergunta do usuário
             chatBody.innerHTML += `<div class="chat-msg user-msg">${question}</div>`;
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // Simula digitação e responde
+            // Simula um tempo de digitação (950 milissegundos) e lança a resposta
             setTimeout(() => {
                 chatBody.innerHTML += `<div class="chat-msg bot-msg">${answer}</div>`;
-                showOptions();
-            }, 800);
+                showOptions(); // Mostra as opções de novo
+            }, 950);
         }
 
-        // Inicia o menu do bot
+        // Inicia o menu do bot assim que o arquivo for carregado
         showOptions();
     }
 });
