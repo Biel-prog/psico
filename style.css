@@ -798,6 +798,20 @@ h1, h2, h3, .logo-name {
     transition: all 0.3s ease-in-out; 
 }
 
+/* Efeito de Digitação do Robô */
+.typing-indicator { display: flex; align-items: center; gap: 4px; padding: 15px 20px; width: fit-content; }
+.typing-indicator span {
+    display: inline-block; width: 6px; height: 6px; background-color: var(--text-muted);
+    border-radius: 50%; animation: typing 1.4s infinite ease-in-out both;
+}
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
 /* =========================================
    RESPONSIVIDADE (TABLETS E MOBILE)
    ========================================= */
