@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // 2. Animação de Scroll (Intersection Observer)
+    // 2. Animação de Scroll
     const revealElements = document.querySelectorAll('.reveal');
     const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
@@ -36,13 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. LÓGICA DO ASSISTENTE VIRTUAL (CHATBOT) AVANÇADO
+    // 4. LÓGICA DO ASSISTENTE VIRTUAL (CHATBOT)
     const chatbotToggler = document.querySelector('.chatbot-toggler');
     const chatbotWindow = document.querySelector('.chatbot-window');
     const closeChat = document.querySelector('.close-chat');
     const chatBody = document.getElementById('chat-body');
 
-    // Banco de Dados com a resposta refinada e profissional sobre reembolso
+    // FIX: Força o navegador do PC a medir a rolagem do ponto certo
+    if(chatBody) {
+        chatBody.style.position = 'relative';
+    }
+
     const faqData = [
         {
             q: "Atende convênio ou particular?",
@@ -71,13 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Abre o Chat
         chatbotToggler.addEventListener('click', () => {
             chatbotWindow.classList.toggle('show');
-            // Se o chat estiver vazio, inicia a conversa do zero
             if(chatBody.innerHTML.trim() === '') {
                 resetChat();
             }
         });
 
-        // Fecha o Chat e zera a conversa
+        // Fecha o Chat
         closeChat.addEventListener('click', () => {
             chatbotWindow.classList.remove('show');
             setTimeout(() => {
@@ -85,14 +88,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         });
 
-        // Função que reinicia tudo e dá as boas vindas
+        // Função que reinicia tudo
         function resetChat() {
             chatBody.innerHTML = `<div class="chat-msg bot-msg" id="msg-welcome">Olá! Sou o assistente virtual do Psicólogo Rogério Jefferson. Como posso te orientar hoje?</div>`;
             showOptions();
-            chatBody.scrollTop = 0;
+            
+            // TIMEOUT VITAL: Dá 50 milissegundos para o PC renderizar os botões ANTES de travar a tela no topo
+            setTimeout(() => {
+                chatBody.scrollTop = 0;
+            }, 50);
         }
 
-        // Renderiza os botões de opções SEM forçar rolagem
+        // Renderiza botões
         function showOptions() {
             const oldOptions = document.querySelector('.chat-options');
             if (oldOptions) oldOptions.remove();
@@ -118,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatBody.appendChild(optionsContainer);
         }
 
-        // Fluxo: Clica na Pergunta -> Digitando -> Mostra Resposta -> Ajusta Scroll no Topo
+        // Responde a pergunta
         function handleQuestionClick(question, answer) {
             document.querySelector('.chat-options').remove();
             
@@ -131,8 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             
-            // Aqui ele pode rolar para o fundo para mostrar os pontinhos piscando
-            chatBody.scrollTop = chatBody.scrollHeight;
+            // Joga pro fundo pra ver as bolinhas de digitação
+            setTimeout(() => {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 50);
 
             setTimeout(() => {
                 const typingIndicator = document.getElementById(typingId);
@@ -141,21 +150,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const msgId = 'msg-' + Date.now();
                 chatBody.innerHTML += `<div id="${msgId}" class="chat-msg bot-msg">${answer}</div>`;
                 
-                // Volta a mostrar as opções
                 showOptions();
                 
-                // LÓGICA DO SCROLL: Timeout de 50ms garante que o navegador já renderizou os botões novos antes de travar a tela no balão
+                // CÁLCULO MATEMÁTICO: Acha a distância exata da resposta e cola a visão nela.
                 setTimeout(() => {
                     const newMsg = document.getElementById(msgId);
                     if (newMsg) {
                         chatBody.scrollTo({
-                            top: newMsg.offsetTop - 20, 
+                            top: newMsg.offsetTop - 15,
                             behavior: 'smooth'
                         });
                     }
                 }, 50);
                 
-            }, 1200);
+            }, 3200);
         }
     }
 });
