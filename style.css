@@ -282,6 +282,8 @@ h1, h2, h3, .logo-name {
     100% { transform: translateY(0px); }
 }
 
+
+
 /* =========================================
    ESTRUTURA DE SEÇÕES PADRÃO
    ========================================= */
@@ -881,6 +883,10 @@ h1, h2, h3, .logo-name {
 
 @media (max-width: 768px) {
     .hamburger { display: flex; }
+
+    .logo-circular {
+        max-width: 260px !important; /* Tamanho perfeito para a tela do celular */
+    }
     
     .nav-links { 
         position: absolute; 

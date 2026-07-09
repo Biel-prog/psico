@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             q: "Onde ocorrem as sessões?",
-            a: "Realizo atendimentos presenciais em Mogi das Cruzes e também ofereço a modalidade de Psicoterapia Online."
+            a: "Realizo atendimentos presenciais em Mogi das Cruzes e também ofereço a modalidade de Psicoterapia Online para todo o Brasil."
         },
         {
             q: "Quais questões a terapia ajuda a tratar?",
-            a: "O processo auxilia no enfrentamento de ansiedade, depressão, conflitos familiares, dificuldades nos relacionamentos, autoestima e luto."
+            a: "O processo auxilia no enfrentamento de ansiedade, depressão, conflitos familiares, dificuldades nos relacionamentos, autoestima, luto, entre outras demandas."
         },
         {
             q: "Como funciona a sua abordagem?",
