@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  rjpsicoterapia-web:
+    container_name: rjpsicoterapia-site
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8082:80"
